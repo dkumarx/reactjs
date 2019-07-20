@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import './App.css';
 
 let personalData = {
-  firstName: "DJay",
+  firstName: "Dhananjay",
   lastName: "Kumar",
   Address: "South Melbourne, VIC",
   age: 40
