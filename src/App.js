@@ -7,6 +7,47 @@ let personalData = {
   Address: "South Melbourne, VIC",
   age: 40
 }
+
+//Library 
+let BookList = [
+   {"title": "Out bond", "author": "Micheal", "pages": 300},
+   {"title": "Auto Immune", "author": "Dr. Myer", "pages": 350},
+   {"title": "The Myth", "author": "Charls", "pages": 200}
+]
+
+const Book = ({title, author, pages}) => {
+   return (
+      <section>
+         <h2>{title}</h2>
+         <p>by: {author}</p>
+         <p>Pages: {pages} pages</p>
+      </section>
+   )
+}
+
+const Library = ({books}) => {
+   return (
+      <div>
+         {books.map(
+            book => <Book 
+               title={book.title}
+               author={book.author}
+               pages={book.pages} />
+         )}
+      </div>
+   )
+}
+// Funcational based React component rendering
+// Param:  passing value as props and implemented as ES6 parameter of funciton as object
+const SimpleCounter = ({msg, minutes, color, increments}) => {
+   const style = {color: color}
+   return (
+      <div>
+         <h1 style={style}>{msg}</h1>
+         <p>Binding props data; static - {minutes}, counter value - {increments}</p>
+      </div>
+   )
+}
 class App extends Component {
   constructor(props) {
      super(props);
@@ -22,33 +63,20 @@ class App extends Component {
   render() {
      return (
        <section>
-        <div>
            <Content 
               myNumber = {this.state.data}
               firstName={personalData.firstName}
               lastName={personalData.lastName}
               Address={personalData.Address}
               age={personalData.age}></Content>
-           <hr />
            <button onClick = {this.setNewNumber}>INCREMENT</button>
-        </div>
+           <hr />
+           <Library books={BookList} />
       </section>
      );
   }
 }
 
-class SimpleCounter extends React.Component {
-  render () {
-    const {msg, minutes, color} = this.props;
-    const style = {color: color}
-    return (
-      <div>
-        <h1 style={style}>{msg}</h1>
-        <p>Binding props data; static - {minutes}, counter value - {this.props.increments}</p>
-      </div>
-    )
-  }
-}
 class Content extends Component {
   /*
   * REACT :: components LIFECYCLE work as on below order
