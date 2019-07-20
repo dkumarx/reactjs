@@ -25,20 +25,41 @@ const Book = ({title, author, pages}) => {
    )
 }
 
-const Library = ({books}) => {
-   return (
-      <div>
-         {books.map(
-            book => <Book 
-               title={book.title}
-               author={book.author}
-               pages={book.pages} />
-         )}
-      </div>
-   )
+class Library extends Component {
+   constructor (props) {
+      super(props); // create new instance of class
+      this.state = {
+         open: true
+      }
+   }
+
+   toggleOpenClosed() {
+      this.setState({
+         open: !this.state.open
+      })
+   }
+
+   render () {
+      const {books} = this.props;
+      return (
+            <div>
+               <h1>The librry is {this.state.open ? 'open' : 'closed'}</h1>
+               <button onClick={this.toggleOpenClosed.bind(this)}>Change</button>
+               {books.map(
+                  (book, i) => <Book 
+                     key={i}
+                     title={book.title}
+                     author={book.author}
+                     pages={book.pages} />
+               )}
+            </div>
+         ) 
+   }
 }
+
 // Funcational based React component rendering
-// Param:  passing value as props and implemented as ES6 parameter of funciton as object
+// Param:  Props and implemented as ES6 parameter of funciton as object
+// Funcational based React component - we cann't used state. We need to used only Props
 const SimpleCounter = ({msg, minutes, color, increments}) => {
    const style = {color: color}
    return (
